@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Daily parlays</title>
+<style>
+:root{--bg:#fafaf7;--panel:#fff;--fg:#1d1d1b;--mut:#6b6b66;--line:#e4e2dc;--ok:#1f7a45;--bad:#b3261e;--warn:#9a6700}
+@media (prefers-color-scheme:dark){:root{--bg:#161614;--panel:#1f1f1c;--fg:#ecebe6;--mut:#a3a29c;--line:#34332f;--ok:#5cc28a;--bad:#f2867d;--warn:#e0b14d}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.45 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:980px;margin:0 auto;padding:20px 16px 48px}
+h1{font:400 28px/1.15 Georgia,serif;margin:0 0 4px}h2{font-size:17px;font-weight:600;margin:28px 0 10px}
+.mut{color:var(--mut)}.sm{font-size:13px}.ok{color:var(--ok)}.bad{color:var(--bad)}.warn{color:var(--warn)}
+a{color:inherit}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+.card h3{margin:0 0 4px;font-size:15px}.odds{font:400 26px Georgia,serif}
+ul{list-style:none;margin:8px 0 0;padding:0}li{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-top:1px solid var(--line)}
+li small{display:block;color:var(--mut);font-size:12px}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:14px}
+th,td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}th:first-child,td:first-child{text-align:left}
+th{color:var(--mut);font-weight:500;font-size:12px}
+.wrap{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.pill{font-size:11px;padding:1px 6px;border-radius:9px;border:1px solid var(--line);margin-left:6px}
+details{background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:8px}
+summary{cursor:pointer;padding:10px 14px;display:flex;justify-content:space-between;gap:10px;list-style:none}
+details ul{padding:0 14px 8px}
+</style></head><body><main>
+<h1>Daily parlays</h1>
+<div class="mut sm" id="sub"></div>
+<div class="sm"><a href="https://douglasewild-del.github.io/nhl-dash/">NHL picks page</a></div>
+
+<h2>Today</h2><div class="grid" id="today"></div>
+<h2>Record</h2>
+<div class="mut sm" style="margin-bottom:8px">1 unit per ticket at the 10:40 AM price. "Expected" is what the fair prices said these tickets should have made; if actual keeps trailing it, the edge isn't real.</div>
+<div class="wrap"><table id="rec"><thead><tr><th>League</th><th>W-L-P</th><th>Pending</th><th>Units</th><th>Expected</th><th>ROI</th><th>Legs hit</th></tr></thead><tbody></tbody></table></div>
+<h2>Recent tickets</h2><div id="recent"></div>
+<p class="mut sm">Legs at -130 or longer, one per game, whole ticket at one book (Bovada, DraftKings, Kalshi). Fair price = median no-vig across US books and exchanges, or your model where tagged. Hit chance and EV assume independent legs.</p>
+</main>
+<script id="d" type="application/json">{"today": {"date": "2026-10-30", "generated_at": "2026-10-30T14:24:51-07:00", "quota_remaining": "28847", "parlays": [{"id": "2026-10-30-NFL", "date": "2026-10-30", "league": "NFL", "status": "skip", "note": "No games today", "games": 0}, {"id": "2026-10-30-NBA", "date": "2026-10-30", "league": "NBA", "status": "ok", "games": 10, "book": "Kalshi", "legs": [{"league": "NBA", "event_id": "036a93ca33d6261c21d4bfa6e0d02568", "game": "Chicago Bulls @ Boston Celtics", "start": "2026-10-30T23:40:00Z", "market": "h2h", "pick": "Chicago Bulls ML", "book": "kalshi", "price_decimal": 7.69, "price_american": 669, "fair_prob": 0.134, "edge": 0.0306, "source": "market"}, {"league": "NBA", "event_id": "9ae108f7a23e86e8102237053dd9e58d", "game": "Denver Nuggets @ Phoenix Suns", "start": "2026-10-31T02:10:00Z", "market": "h2h", "pick": "Phoenix Suns ML", "book": "kalshi", "price_decimal": 2.63, "price_american": 163, "fair_prob": 0.3882, "edge": 0.021, "source": "market"}, {"league": "NBA", "event_id": "64df299b882ea19ad5f8cb0ed5516a6f", "game": "Detroit Pistons @ Brooklyn Nets", "start": "2026-10-30T23:40:00Z", "market": "totals", "pick": "Under 222.5", "book": "kalshi", "price_decimal": 2.0, "price_american": 100, "fair_prob": 0.5039, "edge": 0.0077, "source": "market"}, {"league": "NBA", "event_id": "45ebc54751ef3e435192eaeb0470acfb", "game": "Charlotte Hornets @ Washington Wizards", "start": "2026-10-30T23:10:00Z", "market": "h2h", "pick": "Charlotte Hornets ML", "book": "kalshi", "price_decimal": 1.96, "price_american": -104, "fair_prob": 0.5102, "edge": 0.0001, "source": "market"}], "n_legs": 4, "parlay_decimal": 79.28, "parlay_american": 7828, "hit_prob": 0.0134, "ev": 0.0603, "positive_legs": 4, "note": ""}, {"id": "2026-10-30-NHL", "date": "2026-10-30", "league": "NHL", "status": "ok", "games": 3, "book": "Kalshi", "legs": [{"league": "NHL", "event_id": "a536736a6da269d2e10edbdb27a789bd", "game": "Winnipeg Jets @ Florida Panthers", "start": "2026-10-30T23:10:00Z", "market": "totals", "pick": "Under 6.5", "book": "kalshi", "price_decimal": 1.85, "price_american": -118, "fair_prob": 0.5469, "edge": 0.0117, "source": "market"}, {"league": "NHL", "event_id": "026d37181dd4ace0df7565d9b208ce7e", "game": "Seattle Kraken @ Calgary Flames", "start": "2026-10-31T00:10:00Z", "market": "h2h", "pick": "Seattle Kraken ML", "book": "kalshi", "price_decimal": 1.96, "price_american": -104, "fair_prob": 0.5105, "edge": 0.0005, "source": "market"}], "n_legs": 2, "parlay_decimal": 3.63, "parlay_american": 263, "hit_prob": 0.2792, "ev": 0.0124, "positive_legs": 2, "note": ""}, {"id": "2026-10-30-MLB", "date": "2026-10-30", "league": "MLB", "status": "off", "note": "Out of season", "games": 0}, {"id": "2026-10-30-CFB", "date": "2026-10-30", "league": "CFB", "status": "ok", "games": 3, "book": "Kalshi", "legs": [{"league": "CFB", "event_id": "8916ba5e623a0a1d97dd0e7f50e4a205", "game": "Kent State Golden Flashes @ Sacramento State Hornets", "start": "2026-10-31T02:30:00Z", "market": "h2h", "pick": "Sacramento State Hornets ML", "book": "kalshi", "price_decimal": 3.57, "price_american": 257, "fair_prob": 0.285, "edge": 0.0173, "source": "market"}, {"league": "CFB", "event_id": "78b3d38cdfa28649fdd2ca92829569ce", "game": "Tulane Green Wave @ Charlotte 49ers", "start": "2026-10-30T23:00:00Z", "market": "spreads", "pick": "Charlotte 49ers +7.5", "book": "kalshi", "price_decimal": 2.04, "price_american": 104, "fair_prob": 0.491, "edge": 0.0016, "source": "market"}], "n_legs": 2, "parlay_decimal": 7.28, "parlay_american": 628, "hit_prob": 0.1399, "ev": 0.0191, "positive_legs": 2, "note": ""}, {"id": "2026-10-30-MLS", "date": "2026-10-30", "league": "MLS", "status": "skip", "note": "No games today", "games": 0}, {"id": "2026-10-30-WNBA", "date": "2026-10-30", "league": "WNBA", "status": "skip", "note": "No games today", "games": 0}, {"id": "2026-10-30-CROSS", "date": "2026-10-30", "league": "Cross-sport", "status": "ok", "games": 16, "book": "Kalshi", "legs": [{"league": "NBA", "event_id": "036a93ca33d6261c21d4bfa6e0d02568", "game": "Chicago Bulls @ Boston Celtics", "start": "2026-10-30T23:40:00Z", "market": "h2h", "pick": "Chicago Bulls ML", "book": "kalshi", "price_decimal": 7.69, "price_american": 669, "fair_prob": 0.134, "edge": 0.0306, "source": "market"}, {"league": "CFB", "event_id": "8916ba5e623a0a1d97dd0e7f50e4a205", "game": "Kent State Golden Flashes @ Sacramento State Hornets", "start": "2026-10-31T02:30:00Z", "market": "h2h", "pick": "Sacramento State Hornets ML", "book": "kalshi", "price_decimal": 3.57, "price_american": 257, "fair_prob": 0.285, "edge": 0.0173, "source": "market"}, {"league": "NHL", "event_id": "a536736a6da269d2e10edbdb27a789bd", "game": "Winnipeg Jets @ Florida Panthers", "start": "2026-10-30T23:10:00Z", "market": "totals", "pick": "Under 6.5", "book": "kalshi", "price_decimal": 1.85, "price_american": -118, "fair_prob": 0.5469, "edge": 0.0117, "source": "market"}, {"league": "NBA", "event_id": "9ae108f7a23e86e8102237053dd9e58d", "game": "Denver Nuggets @ Phoenix Suns", "start": "2026-10-31T02:10:00Z", "market": "h2h", "pick": "Phoenix Suns ML", "book": "kalshi", "price_decimal": 2.63, "price_american": 163, "fair_prob": 0.3882, "edge": 0.021, "source": "market"}], "n_legs": 4, "parlay_decimal": 133.57, "parlay_american": 13257, "hit_prob": 0.0081, "ev": 0.083, "positive_legs": 4, "note": ""}]}, "record": {"by_league": [], "recent": []}}</script>
+<script>
+const D=JSON.parse(document.getElementById('d').textContent);
+const $=(t,c,x)=>{const n=document.createElement(t);if(c)n.className=c;if(x!=null)n.textContent=x;return n};
+const am=a=>a==null?'':(a>0?'+':'')+a, pct=(x,s)=>x==null?'—':(s&&x>0?'+':'')+(x*100).toFixed(1)+'%', u=x=>x==null?'—':(x>0?'+':'')+x.toFixed(2)+'u';
+const tf=new Intl.DateTimeFormat('en-US',{hour:'numeric',minute:'2-digit',timeZone:'America/Los_Angeles'});
+const df=new Intl.DateTimeFormat('en-US',{weekday:'short',month:'short',day:'numeric',timeZone:'America/Los_Angeles'});
+const T=D.today;
+document.getElementById('sub').textContent=`${df.format(new Date(T.generated_at))} · odds pulled ${tf.format(new Date(T.generated_at))}`;
+const today=document.getElementById('today');
+const order=['Cross-sport','NFL','NBA','NHL','CFB','MLB','MLS','WNBA'];
+T.parlays.slice().sort((a,b)=>order.indexOf(a.league)-order.indexOf(b.league)).forEach(p=>{
+  const c=$('div','card');c.append($('h3',null,p.league==='CFB'?'College football':p.league));
+  if(p.status!=='ok'){c.append($('div','mut',p.note||'No parlay'));today.append(c);return}
+  c.append($('div','mut sm',`${p.book} · ${p.n_legs} legs · ${p.games} games`),$('div','odds',am(p.parlay_american)));
+  const s=$('div','sm');s.append(`Hit ${pct(p.hit_prob)} · `,$('span',p.ev>0?'ok':'bad',`EV ${pct(p.ev,true)}`));c.append(s);
+  if(p.note)c.append($('div','warn sm',p.note));
+  const ul=$('ul');p.legs.forEach(l=>{const li=$('li'),a=$('div');a.append($('b',null,l.pick));
+    if(l.source==='model')a.lastChild.append($('span','pill','model'));
+    a.append($('small',null,`${l.game} · ${tf.format(new Date(l.start))} · fair ${pct(l.fair_prob)} · edge ${pct(l.edge,true)}`));
+    li.append(a,$('b',null,am(l.price_american)));ul.append(li)});
+  c.append(ul);today.append(c)});
+const tb=document.querySelector('#rec tbody');
+(D.record.by_league||[]).forEach(r=>{const tr=$('tr');
+  [r.league==='CFB'?'College football':r.league,`${r.won}-${r.lost}-${r.push}`,r.pending,null,u(r.exp_pnl_units),pct(r.roi,true),r.legs?`${r.legs_won}/${r.legs}`:'—'].forEach((v,i)=>{
+    const td=$('td',null,i===3?u(r.pnl_units):v);if(i===3)td.className=r.pnl_units>0?'ok':r.pnl_units<0?'bad':'';
+    if(r.league==='All')td.style.fontWeight=600;tr.append(td)});tb.append(tr)});
+if(!(D.record.by_league||[]).length){const tr=$('tr'),td=$('td','mut','No graded tickets yet. The first results show up the morning after the first run.');td.colSpan=7;td.style.textAlign='left';tr.append(td);tb.append(tr)}
+const rc=document.getElementById('recent');
+(D.record.recent||[]).forEach(p=>{const d=$('details'),s=$('summary');
+  const cls=p.result==='won'?'ok':p.result==='lost'?'bad':'mut';
+  s.append($('span',null,`${p.date} · ${p.league} · ${p.book} ${am(p.parlay_american)}`),$('b',cls,`${p.result}${p.pnl_units==null?'':' '+u(p.pnl_units)}`));
+  d.append(s);const ul=$('ul');p.legs.forEach(l=>{const li=$('li'),a=$('div');a.append($('span',null,l.pick),$('small',null,l.game));
+    li.append(a,$('span',l.result==='win'?'ok':l.result==='loss'?'bad':'mut',`${am(l.price_american)} ${l.result}`));ul.append(li)});
+  d.append(ul);rc.append(d)});
+if(!(D.record.recent||[]).length)rc.append($('div','mut sm','Nothing graded yet.'));
+</script></body></html>
