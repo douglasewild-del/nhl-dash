@@ -35,7 +35,7 @@ details ul{padding:0 14px 8px}
 <div class="sm"><a href="https://douglasewild-del.github.io/nhl-dash/">NHL picks page</a></div>
 
 <h2>$5 Challenge</h2>
-<div class="mut sm" style="margin-bottom:8px">One bet a day priced near -135 (-125 to -145): a single or 2-3 leg parlay at one book, whichever has the best EV. Starts at $5; everything rides on the next bet until a loss or $500, then a new run starts at $5 the next day.</div>
+<div class="mut sm" style="margin-bottom:8px">One bet a day priced near -135 (-125 to -145): a single or 2-3 leg parlay at one book, whichever has the best EV. Starts at $5; everything rides on the next bet until a loss or $500, then a new run starts at $5 the next day. After 3 wins in a row the $5 comes back out and the rest rides on house money.</div>
 <div class="card" id="chal"></div>
 <div class="wrap" id="chalh" style="margin-top:10px"></div>
 
@@ -70,12 +70,12 @@ document.getElementById('sub').textContent=`${df.format(new Date(T.generated_at)
  else{const t=$('div','lt');t.append($('b',null,`Run ${ch.run_no||1} · ${ch.wins||0} win${ch.wins===1?'':'s'} in a row`),$('b',null,ch.stake==null?(ch.waiting_on?`Stake waits on ${ch.waiting_on}`:''):`Stake ${m(ch.stake)}`));cc.append(t);
   if(ch.status!=='ok'){cc.append($('div','mut',ch.note||'No bet today; the bankroll carries over.'))}
   else{const s=$('div','mut sm');s.append(`${ch.n_legs===1?'Single':ch.n_legs+'-leg parlay'} · ${am(ch.parlay_american)} at ${ch.book}`+(ch.to_return?` · returns ${m(ch.to_return)}`:'')+` · hit ${pct(ch.hit_prob)} · `,$('span',ch.ev>0?'ok':'bad',`EV ${pct(ch.ev,true)}`));cc.append(s);
-   if(ch.wins_needed)cc.append($('div','mut sm',`${ch.wins_needed} more wins in a row reach $500 at -135`));
+   if(ch.wins_needed)cc.append($('div','mut sm',`${ch.wins_needed} more wins in a row reach $500 at this run\'s odds so far`));
    const ul=$('ul');ch.legs.forEach(l=>{const li=$('li'),a=$('div');a.append($('b',null,`${l.pick} (${l.league})`),$('small',null,`${l.game} · ${tf.format(new Date(l.start))} · fair ${pct(l.fair_prob)}`));li.append(a,$('b',null,am(l.price_american)));ul.append(li)});cc.append(ul)}}
  const H=D.challenge||[],hw=document.getElementById('chalh');
  if(!H.length){hw.style.display='none'}
  else{const tb=$('table'),th=$('thead'),hr=$('tr');['Day','Run','Odds','Stake','Result','Bankroll after'].forEach(x=>hr.append($('th',null,x)));th.append(hr);tb.append(th);const bd=$('tbody');
-  H.forEach(r=>{const tr=$('tr'),res=r.run_status==='goal'?'won, reached $500':r.result==='lost'?'lost, run over':r.result;
+  H.forEach(r=>{const tr=$('tr'),res=r.run_status==='goal'?'won, reached $500':r.result==='lost'?'lost, run over':r.pulled?`${r.result}, $${Number(r.pulled).toFixed(2)} pulled out`:r.result;
    [r.date,r.run_no??'—',am(r.parlay_american),m(r.stake),res,m(r.bank_after)].forEach((v,i)=>{const td=$('td',i===4?(r.result==='won'?'ok':r.result==='lost'?'bad':'mut'):null,String(v));tr.append(td)});bd.append(tr)});
   tb.append(bd);hw.append(tb)}}
 // ladders
